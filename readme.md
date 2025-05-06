@@ -70,25 +70,25 @@ When the user enters a set of text in the top panel and then clicks on the `Subm
 
 | 🔍 **Hint:** Make sure your dataset is in the correct form when creating the sunburst chart. The Sunburst tutorial shows a correct hierarchical/nested dataset that is suitable for the sunburst chart.
 
-<img src="images/sunburstchart.gif" alt="Alt Text" width="500" height="500">
+<img src="images/sunburstchart.gif" alt="sunburstchart" width="500" height="500">
 
 ## Step 2: Displaying a Sankey chart
 
-When the user clicks on a rectangle in the treemap, draw a Sankey diagram in the bottom right panel. Your design should look similar to what is in the screenshots. The chart should be centered in the panel (with reasonable margins, similar to the screenshots), with nodes sized based on the counts of each character.
+When the user clicks on a character arc in the sunburst chart, draw a Sankey diagram in the bottom right panel. Your design should look similar to what is in the screenshots. The chart should be centered in the panel (with reasonable margins, similar to the screenshots), with nodes sized based on the counts of each character.
 
 - The node rectangles in the Sankey diagram should be the same colors as the rectangles in the treemap. In my screenshots, I put a bit of spacing/padding between the rectangles (i.e., vertical spacing between the rectangles in the left column), and added a small rounding to the rectangles. You should give the bars a 1 pixel thick black border.
-- If the user clicks on a different rectangle in the treemap, re-load the Sankey diagram for the selected character. When you do this, you'll need to build an appropriate dataset: the left column will show the counts of characters that occur immediately before that character (e.g., in the top screenshot on this page, `a` is selected, and the left column shows `la`, `ma`, etc.). The middle column sizes the `a` character based on the number of times it appears in the submitted text, and the right column shows characters immediately after `a` (e.g., `am`, `ad`, etc.). The ordering for nodes in the left/right columns is up to you (I'm using the ordering outputted by D3's `sankey` library).
-- If the user clicks the `submit` text button in the top panel (thus submitting a new set of text, and re-loading the treemap), clear the Sankey diagram (make this a blank panel).
-- You should also update the text at the top of this panel whenever a Sasnkey chart is loaded/cleared. When no chart is shown, the text should say `Character flow for ...`. When a character is selected, it should say `Character flow for 'char'`, where `char` is the selected character.
+- If the user clicks on a different arc in the treemap, re-load the Sankey diagram for the selected character. When you do this, you'll need to build an appropriate dataset: the left column will show the counts of characters that occur immediately before that character (e.g., in the top screenshot on this page, `p` is selected, and the left column shows `ep`, `op`, etc.). The middle column sizes the `p` character based on the number of times it appears in the submitted text, and the right column shows characters immediately after `p` (e.g., `po`, `pa`, etc.). The ordering for nodes in the left/right columns is up to you (I'm using the ordering outputted by D3's `sankey` library).
+- If the user clicks the `submit` text button in the top panel (thus submitting a new set of text, and re-loading the sunburst chart), clear the Sankey diagram (make this a blank panel).
+- You should also update the text at the top of this panel whenever a Sankey chart is loaded/cleared. When no chart is shown, the text should say `Character flow for ...`. When a character is selected, it should say `Character flow for 'char'`, where `char` is the selected character.
 
-| 🔍 **Hint:** D3 does not contain a `sankey` function in its base library, so you'll need to import one. There are several libraries out there; for my demo code, I used the `d3-sankey.min.js` library linked here: [Sankey Diagram with D3 v7
-](https://gist.github.com/d3noob/31665aced416f27abca4fa46f5f4b568). Similar to the treemap above, pay careful attention with building your dataset so it runs correctly in the Sankey algorithm you use.
+| 🔍 **Hint:** D3 does not contain a `sankey` function in its base library, so you'll need to import one. There are several libraries out there; for my demo code, I used the `d3-sankey.min.js` library linked here: [Sankey Diagram with D3
+](https://unpkg.com/d3-sankey@0.12.3/dist/d3-sankey.min.js). Similar to the sunburst chart above, pay careful attention with building your dataset so it runs correctly in the Sankey algorithm you use.
 
-![imgs/hover.gif](imgs/click_treemap.gif)
+![images/sankey.gif](images/sankey.gif)
 
 ## Step 3: Add a hover tooltip to the two charts
 
-Finally, add a tooltip to the two charts. When the user hovers over a rectangle in the treemap, display the name of the hovered character and the count for that character. When a user hovers over a rectangle in the Sankey diagram, show an appropriate tooltip:
+Finally, add a tooltip to the two charts. When the user hovers over an arc in the sunburst chart, display the name of the hovered character and the count for that character. When a user hovers over a rectangle in the Sankey diagram, show an appropriate tooltip:
 
 - Left column: `Character 'char' flows into 'selected char' COUNT times.`
 - Middle column: `Character 'selected char' appears COUNT times.`
@@ -96,18 +96,13 @@ Finally, add a tooltip to the two charts. When the user hovers over a rectangle 
 
 You can see the correct functionality in the above GIF.
 
-The tooltip should be styled similar to the GIF (e.g., white background, black rounded border) and smoothly follow the user's mouse as it moves along the rectangle, and disappear when it's no longer over the rectangle. You'll want to use mouse events to control this functionality (`mouseover`, `mousemove`, `mouseout`).
+The tooltip should be styled similar to the GIF (e.g., white background, black rounded border) and smoothly follow the user's mouse as it moves along the arc/rectangle, and disappear when it's no longer over the arc/rectangle. You'll want to use mouse events to control this functionality (`mouseover`, `mousemove`, `mouseout`).
 
 | 🔍 **Hint:** There are multiple ways to implement tooltips. One option is defining a div that's hidden unless you are hovering over a bar; when that happens, you populate the div with the necessary info, change its display to visible, and move it to the appropriate position on the so it follows the mouse's x/y position on the page. See  this page which for an example: [https://bl.ocks.org/d3noob/97e51c5be17291f79a27705cef827da2](https://bl.ocks.org/d3noob/97e51c5be17291f79a27705cef827da2).
 
-| 🔍 **Hint:** When you mouse over a rectangle, you want to select the currently hovered data point. Inside your `mouseover`/`mousemove`/`mouseout` functions, you can have two parameters like so: `.on('mouseover', function(d, i) { ...})`. Use the Dev Tools to see what the `d` and `i` objects are, and what properties they contain, as a way to figure out how to reference the data item that is currently part of the event (i.e., that corresponds to the rectangle).
+| 🔍 **Hint:** When you mouse over an arc/rectangle, you want to select the currently hovered data point. Inside your `mouseover`/`mousemove`/`mouseout` functions, you can have two parameters like so: `.on('mouseover', function(d, i) { ...})`. Use the Dev Tools to see what the `d` and `i` objects are, and what properties they contain, as a way to figure out how to reference the data item that is currently part of the event (i.e., that corresponds to the arc/rectangle).
 
-## Extra Credit
 
-You can receive up to four extra credit points for this assignment. Each bullet point is worth up to two points (depending on quality  of implementation).
-
-- Implement linked highlighting between the treemap and Sankey chart. For example, when a rectangle in the treemap is hovered over, highlight the rectangle in the treemap and in the Sankey diagram. For example, you could make the border a little thicker and change its stroke color to an easily visible highlight color to do this. Likewise, when a user hovers over a rectangle in the Sankey diagram, highlight all other rectangles in the Sankey and treemap that contain that character.
-- Extend the linked highlighting to also highlight characters in the `textarea`. In other words, when you hover on a rectangle in the treemap or Sankey, highlight instances of that character in the text box. Likewise, think about how to smartly implement this in the Sankey chart: do you want to highlight _all_ instances of a character, or only ones that are part of the Sankey's currently shown chart? Also consider color: what color should you use to highlight the characters in the text box? If your color map uses very saturated colors, you might want to use a lighter shade (or a shade with partial opacity) to make it easy to still read the words in the text box. Note that the "base" `textarea` does not support highlighting individual characters, so you'll have to figure out a creative way to accomplish this, either by swapping out the `textarea` for different HTML elements (while maintaining the look and feel), or some other solution ([like this](https://codersblock.com/blog/highlight-text-inside-a-textarea/)). Note that I haven't tested this link out, so I am not sure if will work! :-)
 
 ## Grading
 
@@ -117,4 +112,3 @@ This assignment is worth 10 points.
 - Step 1 is worth 3 points
 - Step 2 is worth 3 points
 - Step 3 is worth 3 points
-- The Extra Credit is worth up to 4 bonus points
