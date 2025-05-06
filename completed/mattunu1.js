@@ -148,7 +148,7 @@ console.log("root: ",root);
   .style("padding","2px")
      .attr("viewBox", [-width / 2, -height / 2, width,height ])
       .style("font", "10px sans-serif");
-console.log("root.descendants: ",root.descendants().slice(1))
+//console.log("root.descendants: ",root.descendants().slice(1))
   // Append the arcs.
   const path = sunburst_svg.append("g")
     .selectAll("path")
@@ -177,9 +177,9 @@ console.log("root.descendants: ",root.descendants().slice(1))
 //       .style("cursor", "pointer")
 //       .on("click", clicked);
 
-  const format = d3.format(",d");
-  path.append("title")
-      .text(d => `${d.ancestors().map(d => d.data.name).reverse().join("/")}\n${format(d.value)}`);
+//   const format = d3.format(",d");
+//   path.append("title")
+//       .text(d => `${d.ancestors().map(d => d.data.name).reverse().join("/")}\n${format(d.value)}`);
 
   const label = sunburst_svg.append("g")
       .attr("pointer-events", "none")

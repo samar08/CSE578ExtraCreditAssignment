@@ -9,13 +9,13 @@ The goal of this homework is to give you practice building and linking more comp
 
 The screenshot below shows an example of what your finished interface will look like.
 
-![imgs/interface.png](imgs/interface.png)
+![images/completedinterface.png](images/interface.png)
 
 ## Overview
 
-The starter code for this assignment shows three panels on the `index.html` page. The top panel contains a `textarea` html element and a `submit` button. The user can enter a set of text and then click the button. This should create a sunburst chart in the bottom-left panel. The sunburst chart will visualize the distribution of the entered text characters based on how many times they appear in the `textarea` (i.e., each arc will be sized based on the count of that character; a larger arc will indicate that character appears more often). The sunburst chart will also be hierarchical: consonants will be one color (and grouped together), vowels another color (grouped together), and punctuation characters a third color (grouped together).
+The starter code for this assignment shows three panels on the `index.html` page. The top panel contains a `textarea` html element and a `submit` button. The user can enter a set of text and then click the button. This should create a sunburst chart in the bottom-left panel. The sunburst chart will have two layers. The first layer will have the arcs labeled "vowels","punctuations", and "consonants". And the second layer will visualize the distribution of the entered text characters based on how many times they appear in the `textarea` (i.e., each arc will be sized based on the count of that character; a larger arc will indicate that character appears more often) and also we will visualize under which category they fall into (i.e., vowels, consonants, and punctuations). The sunburst chart will be hierarchical: consonants will be one color (and grouped together), vowels another color (grouped together), and punctuation characters a third color (grouped together).
 
-Clicking a arc for a character (in the screenshot above, the `p` rectangle has been clicked) will create a Sankey diagram in the bottom-right panel. In the Sankey, the left column show chracters in the `textarea` that are immediately prior to the selected character (e.g., `lp`, `mp`, `np`, etc.) and the right column characters immediately after the selected character (`pm`, `pd`, `pb`, etc.). The middle column will be the selected character. All nodes in the Sankey diagram will be sized based on their count (e.g., for the left column, how often `lp` occurs, how often `mp` occurs, etc.).
+Clicking a arc for a character (in the screenshot above, the `p` arc has been clicked) will create a Sankey diagram in the bottom-right panel. In the Sankey, the left column show chracters in the `textarea` that are immediately prior to the selected character (e.g., `lp`, `mp`, `np`, etc.) and the right column characters immediately after the selected character (`pm`, `pd`, `pb`, etc.). The middle column will be the selected character. All nodes in the Sankey diagram will be sized based on their count (e.g., for the left column, how often `lp` occurs, how often `mp` occurs, etc.).
 
 ## Data Description
 
@@ -38,11 +38,11 @@ You would count the number of times each vowel appears in the submitted text:
 a: 2, e: 5, i: 6, o: 4, u: 2, y: 0
 ```
 
-Note that I'm storing the vowels in a case-insensitive manner; you should also do this! Count and store the vowels, consonants (also case-insensitive), and punctuation characters  into a hierarchical data structure that is appropriate for a treemap visualization.
+Note that I'm storing the vowels in a case-insensitive manner; you should also do this! Count and store the vowels, consonants (also case-insensitive), and punctuation characters  into a hierarchical data structure that is appropriate for a sunburst visualization.
 
-The rectangles in the treemap will be sized based on the count of the character (i.e., a bigger rectangle indicates that character appears more often), and organized based on its vowel/consonant/punctuation grouping. You may design your own categorical colormap to indicate these groups, or use a pre-defined D3 colormap. Add a small spacing/padding between the rectangles, similar to what is shown in the screenshots. When you hover on a rectangle in the treemap, display a tooltip indicating the character name and its count (see below GIF). The tooltip should smoothly follow the mouse cursor, and disapper when
+The arcs in the treemap will be sized based on the count of the character (i.e., a bigger arc indicates that character appears more often), and organized based on its vowel/consonant/punctuation grouping. You may design your own categorical colormap to indicate these groups, or use a pre-defined D3 colormap. Add a small spacing/padding between the arcs, similar to what is shown in the screenshots. When you hover on an arc in the sunburst chart, display a tooltip indicating the character name and its count (see below GIF). The tooltip should smoothly follow the mouse cursor, and disapper when
 
- When the user clicks on a rectangle, you'll create a Sankey chart in the third panel. This Sankey chart will have three columns: the middle column will show the currently selected character, the left column will show the characters that appear in the `textareaa` immediately before the selected character (with the rectangles sized based on how often this happens), and the right column will show characters that occur immediately afterwards (likewise sized). You'll need to create another dataset for this chart (i.e., one that shows which characters are found immeidately before the selected character, and how often they occur, and characters that appear after the selected character).
+ When the user clicks on an arc, you'll create a Sankey chart in the third panel. This Sankey chart will have three columns: the middle column will show the currently selected character, the left column will show the characters that appear in the `textarea` immediately before the selected character (with the rectangles sized based on how often this happens), and the right column will show characters that occur immediately afterwards (likewise sized). You'll need to create another dataset for this chart (i.e., one that shows which characters are found immeidately before the selected character, and how often they occur, and characters that appear after the selected character).
 
 You can consider testing using random text generators, such as [https://loremipsum.io/generator](https://loremipsum.io/generator) when working on your page.
 
@@ -57,20 +57,20 @@ You can consider testing using random text generators, such as [https://loremips
 
 When you first run the page, you should see the empty interface. Add your name and email to the top, and then create a Javascript file to contain all your JS/D3 logic. You should name the file using your ASURITE. For example, Dr. Bryan's JS file would be named `cbryan16.js`. Link to this file in your index.html.
 
-## Step 1: Displaying a treemap chart
+## Step 1: Displaying a sunburst chart
 
 When the page first loads, all three panels should be blank.
-When the user enters a set of text in the top panel and then clicks on the `Submit` button, you should display a treemap that shows the distrubution of grammar characters from the `textarea` (i.e., the vowel counts, the consonant counts, and the punctuation counts in the entered text).
+When the user enters a set of text in the top panel and then clicks on the `Submit` button, you should display a sunburst chart that shows the distrubution of grammar characters from the `textarea` (i.e., the vowel counts, the consonant counts, and the punctuation counts in the entered text).
 
-- You'll want to first read the entered text from the `textarea` and store it in a set of one or more data structures. Every time the submit button is pressed, you'll need to clear and recreate these (and re-display the treemap).
-- Your treemap should be centered inside the `#treemap_div` svg. You may choose the margin around the chart, but make it doesn't go outside of the `svg`'s bounds, and that it's not too small.
+- You'll want to first read the entered text from the `textarea` and store it in a set of one or more data structures. Every time the submit button is pressed, you'll need to clear and recreate these (and re-display the sunburst chart).
+- Your sunburst chart should be centered inside the `#sunburst_div` svg. You may choose the margin around the chart, but make it doesn't go outside of the `svg`'s bounds, and that it's not too small.
 - Choose a categorical d3 color scale for this chart by picking a color scale from [https://github.com/d3/d3-scale-chromatic](https://github.com/d3/d3-scale-chromatic) or creating your own manual one. All vowels will be one color, consonants another, and puncutations a third.
-- Similar to what's shown in the treemap, the rectangles in each group should be organized together (e.g., all vowels together). There are various ways to create these hierarchies; for my code, I used this [D3.js Graph Gallery tutorial](https://d3-graph-gallery.com/graph/treemap_custom.html) as a reference (make sure you refernece the D3 v6 code, which is similar to v7, instead of the v4 code), and you may also find it beneficial (you can play around with the treemap paddings to figure out how to do the spacings correctly).
-- Give the rectangles in this chart a 1 pixel black border (i.e., `stroke-width=1`), and add a small padding/margin between the rectangles.
+- Similar to what's shown in the sunburst chart, the arcs in each group should be organized together (e.g., all vowels together). There are various ways to create these hierarchies; for my code, I used this [Sunburst tutorial](https://observablehq.com/@d3/zoomable-sunburst) as a reference.
+- Add a small padding/margin between the arcs.
 
-| 🔍 **Hint:** Make sure your dataset is in the correct form when creating the treemap. The D3 Graph Gallery tutorial, for example, links to a JSON file that shows a correct hierarchical/nested dataset that is suitable for the `d3.treemap()` funcion.
+| 🔍 **Hint:** Make sure your dataset is in the correct form when creating the sunburst chart. The Sunburst tutorial shows a correct hierarchical/nested dataset that is suitable for the sunburst chart.
 
-![imgs/hover.gif](imgs/tooltip_treemap.gif)
+![images/sunburstchart.gif](images/sunburstchart.gif)
 
 ## Step 2: Displaying a Sankey chart
 
