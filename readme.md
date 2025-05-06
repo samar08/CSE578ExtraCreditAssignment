@@ -70,7 +70,7 @@ When the user enters a set of text in the top panel and then clicks on the `Subm
 
 | 🔍 **Hint:** Make sure your dataset is in the correct form when creating the sunburst chart. The Sunburst tutorial shows a correct hierarchical/nested dataset that is suitable for the sunburst chart.
 
-<img src="images/sunburstchart.gif" alt="Alt Text" width="300" height="200">
+<img src="images/sunburstchart.gif" alt="Alt Text" width="500" height="500">
 
 ## Step 2: Displaying a Sankey chart
 
