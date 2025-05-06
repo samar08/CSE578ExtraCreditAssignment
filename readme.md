@@ -9,7 +9,7 @@ The goal of this homework is to give you practice building and linking more comp
 
 The screenshot below shows an example of what your finished interface will look like.
 
-![images/completedinterface.png](images/interface.png)
+![images/completedinterface.png](images/completedinterface.png)
 
 ## Overview
 
