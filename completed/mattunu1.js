@@ -221,7 +221,10 @@ console.log("root: ",root);
 function drawsankeychart(character, text){
     d3.select("#sankey_svg").selectAll("*").remove();
    document.getElementById("flow_label").innerHTML="Character flow for '"+character+"'";
-//console.log(character);
+   if(character=='vowels' || character=='consonants' || character=='punctuations'){
+    return;
+}
+   //console.log(character);
 //console.log(text);
 beforechar={}
 afterchar={}
