@@ -1,4 +1,4 @@
-# Extra credit assignment: Linking Charts and Adding Interactivity
+# Homework #n: Linking Charts and Adding Interactivity
 
 The goal of this homework is to give you practice building and linking more complex visualizations together in D3. By the end of this assignment you should be able to:
 
