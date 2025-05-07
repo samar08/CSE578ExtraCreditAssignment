@@ -57,7 +57,7 @@ You can consider testing using random text generators, such as [https://loremips
 
 When you first run the page, you should see the empty interface. Add your name and email to the top, and then create a Javascript file to contain all your JS/D3 logic. You should name the file using your ASURITE. For example, Dr. Bryan's JS file would be named `cbryan16.js`. Link to this file in your index.html.
 
-## Step 1: Displaying a sunburst chart
+## Step 1: Displaying a Sunburst chart
 
 When the page first loads, all three panels should be blank.
 When the user enters a set of text in the top panel and then clicks on the `Submit` button, you should display a sunburst chart that shows the distrubution of grammar characters from the `textarea` (i.e., the vowel counts, the consonant counts, and the punctuation counts in the entered text).
